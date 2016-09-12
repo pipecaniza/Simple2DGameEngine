@@ -4,7 +4,7 @@
 
 void Game::Initialize()
 {
-	GameRenderer->Initialize(60);
+	GameRenderer->Initialize(60, 640, 480);
 }
 
 void Game::Update()
@@ -23,7 +23,7 @@ void Game::Update()
 
 Game::Game()
 {
-	GameRenderer = new Renderer(640, 480);
+	GameRenderer = Renderer::GetThisRenderer();
 }
 
 

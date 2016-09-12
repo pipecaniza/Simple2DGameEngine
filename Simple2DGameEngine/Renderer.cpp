@@ -2,8 +2,13 @@
 #include "Log.h"
 #include <SDL_image.h>
 
-bool Renderer::Initialize(int fps)
+Renderer* Renderer::rRenderer = nullptr;
+
+bool Renderer::Initialize(int fps, int weight, int heigth)
 {
+	Weight = weight;
+	Heigth = heigth;
+
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 	{
 		Log::WriteConsoleLog(SDL_GetError());
@@ -52,6 +57,17 @@ void Renderer::Render()
 	SDL_RenderClear(sRenderer);	
 }
 
+
+void Renderer::AddTextureToRender(SDL_Texture* texture, SDL_Rect* source, SDL_Rect* destination)
+{
+	SDL_RenderCopy(
+		sRenderer, 
+		texture, 
+		source, 
+		destination
+	);
+}
+
 SDL_Texture* Renderer::loadImage(std::string path) {
 	auto img = IMG_Load(path.c_str());
 	if (img == NULL) {
@@ -67,19 +83,20 @@ SDL_Texture* Renderer::loadImage(std::string path) {
 	return texture;
 }
 
-void Renderer::AddTextureToRender(SDL_Texture* texture, SDL_Rect* source, SDL_Rect* destination)
+SDL_Renderer* Renderer::GetRenderer()
 {
-	SDL_RenderCopy(
-		sRenderer, 
-		texture, 
-		source, 
-		destination
-	);
+	return rRenderer->sRenderer;
 }
 
-Renderer::Renderer(int weight, int heigth) : 
-	Weight(weight), 
-	Heigth(heigth)
+Renderer* Renderer::GetThisRenderer()
+{
+	if (rRenderer == nullptr)
+		rRenderer = new Renderer();
+
+	return rRenderer;
+}
+
+Renderer::Renderer()
 {
 }
 

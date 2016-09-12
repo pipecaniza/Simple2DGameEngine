@@ -10,6 +10,8 @@ private:
 	static const int TAM_IMAGEN = 32;
 
 private:
+	static Renderer* rRenderer;
+
 	SDL_Window* sWindow;
 	SDL_Renderer* sRenderer;
 	int Weight;
@@ -17,12 +19,15 @@ private:
 	int Fps;
 
 public:
-	bool Initialize(int fps);
+	bool Initialize(int fps, int weight, int heigth);
 	void Render();
 	void AddTextureToRender(SDL_Texture* texture, SDL_Rect* source = NULL, SDL_Rect* destination = NULL);
 	SDL_Texture* Renderer::loadImage(std::string path);
 
-	Renderer(int weight, int heigth);
+	static SDL_Renderer* GetRenderer();
+	static Renderer* GetThisRenderer();
+
+private:
 	Renderer();
 	~Renderer();
 };
