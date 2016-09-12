@@ -23,9 +23,9 @@ void Tanque::update() {
 	}
 }
 
-void Tanque::draw(Game *game) {
-	game->draw(textura, rect, rot);
-	game->drawRect(rect, 255, 0, 0);
+void Tanque::draw(Game1 *Game1) {
+	Game1->draw(textura, rect, rot);
+	Game1->drawRect(rect, 255, 0, 0);
 }
 
 Tanque::Tanque(Uint8 arriba, Uint8 abajo, Uint8 izquierda, Uint8 derecha, SDL_Rect r, SDL_Texture* t) {

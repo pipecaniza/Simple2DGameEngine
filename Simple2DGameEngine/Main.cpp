@@ -1,5 +1,6 @@
 #include <SDL.h>
 #include "easydl.h"
+#include "Game.h"
 #include "Tank.h"
 
 using namespace std;
@@ -10,9 +11,11 @@ const int TAM_IMAGEN = 32;
 
 int main(int argc, char *argv[])
 {
-	Game game;
+	Game1 Game1;
+	Game g;
+	g.Initialize();
 
-	game.start(W_SCREEN, H_SCREEN, 15, true);
+	//Game1.start(W_SCREEN, H_SCREEN, 15, true);
 
 	// Rect destino para pintar
 	SDL_Rect DestR;
@@ -21,21 +24,23 @@ int main(int argc, char *argv[])
 	DestR.w = TAM_IMAGEN;
 	DestR.h = TAM_IMAGEN;
 
-	Tanque *t = new Tanque(
-		SDL_SCANCODE_UP,
-		SDL_SCANCODE_DOWN,
-		SDL_SCANCODE_LEFT,
-		SDL_SCANCODE_RIGHT,
-		DestR,
-		game.loadImage("Jugador.bmp"));
+	SDL_Rect DestR2;
+	DestR2.x = W_SCREEN / 3 - TAM_IMAGEN / 2;
+	DestR2.y = H_SCREEN / 3 - TAM_IMAGEN / 2;
+	DestR2.w = TAM_IMAGEN;
+	DestR2.h = TAM_IMAGEN;
 
-	while (!game.quitEvent()) {
-		t->update();
-		t->draw(&game);
+	
+	//SDL_Texture* texture = Game1.loadImage("C:\\Users\\JuanFelipe\\Documents\\Visual Studio 2015\\Projects\\Simple2DGameEngine\\Simple2DGameEngine\\Jugador.bmp");
+	SDL_Texture* texture = g.GameRenderer->loadImage("Jugador.bmp");
 
-		game.update();
+	g.GameRenderer->AddTextureToRender(texture, NULL, &DestR);
+	g.GameRenderer->AddTextureToRender(texture, NULL, &DestR2);
+
+	g.Update();
+	while (true) {
+		
 	}
-	game.quit();
 
 	return 0;
 }

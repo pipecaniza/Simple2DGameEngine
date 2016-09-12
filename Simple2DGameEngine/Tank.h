@@ -14,7 +14,7 @@ private:
 public:
 	void update();
 
-	void draw(Game *game);
+	void draw(Game1 *Game1);
 
 	Tanque(Uint8 arriba, Uint8 abajo, Uint8 izquierda, Uint8 derecha, SDL_Rect r, SDL_Texture* t);
 };

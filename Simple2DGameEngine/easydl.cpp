@@ -3,8 +3,8 @@
 
 using namespace std;
 
-bool Game::start(int w, int h, int fps, bool hw)
-{
+bool Game1::start(int w, int h, int fps, bool hw)
+{/*
 	if (SDL_Init(SDL_INIT_VIDEO) < 0) {
 		cout << "Error iniciando SDL: " << SDL_GetError() << '\n';
 		return false;
@@ -21,31 +21,31 @@ bool Game::start(int w, int h, int fps, bool hw)
 		cout << "Error creando la ventana: " << SDL_GetError() << '\n';
 		return false;
 	}
-
+	*/
 	int imgFlags = IMG_INIT_PNG | IMG_INIT_JPG | IMG_INIT_TIF | IMG_INIT_WEBP;
 	if (!(IMG_Init(imgFlags) & imgFlags)) {
 		cout << "Error cargando SDL_Image: " << IMG_GetError() << '\n';
 		return false;
 	}
 
-	renderer = SDL_CreateRenderer(window, -1, hw ? SDL_RENDERER_ACCELERATED : SDL_RENDERER_SOFTWARE);
+	//renderer = SDL_CreateRenderer(window, -1, hw ? SDL_RENDERER_ACCELERATED : SDL_RENDERER_SOFTWARE);
 
 	FPS = fps;
 	return true;
 }
 
-void Game::draw(SDL_Texture *t, SDL_Rect &r, float rot)
+void Game1::draw(SDL_Texture *t, SDL_Rect &r, float rot)
 {
 	SDL_RenderCopyEx(renderer, t, NULL, &r, rot, NULL, SDL_FLIP_NONE);
 }
 
-void Game::drawRect(SDL_Rect &rect, Uint8 r, Uint8 g, Uint8 b)
+void Game1::drawRect(SDL_Rect &rect, Uint8 r, Uint8 g, Uint8 b)
 {
 	SDL_SetRenderDrawColor(renderer, r, g, b, 255);
 	SDL_RenderDrawRect(renderer, &rect);
 }
 
-void Game::update()
+void Game1::update()
 {
 	auto timerFps = SDL_GetTicks();
 	SDL_PumpEvents();
@@ -61,14 +61,14 @@ void Game::update()
 	}
 }
 
-void Game::quit()
+void Game1::quit()
 {
 	SDL_DestroyRenderer(renderer);
 	SDL_DestroyWindow(window);
 	SDL_Quit();
 }
 
-SDL_Texture* Game::loadImage(string path) {
+SDL_Texture* Game1::loadImage(string path) {
 	auto img = IMG_Load(path.c_str());
 	if (img == NULL) {
 		cout << "No se pudo cargar " << path.c_str() << ". " << SDL_GetError() << '\n';
@@ -82,7 +82,7 @@ SDL_Texture* Game::loadImage(string path) {
 	return texture;
 }
 
-bool Game::quitEvent()
+bool Game1::quitEvent()
 {
 	SDL_Event event;
 	while (SDL_PollEvent(&event)) {

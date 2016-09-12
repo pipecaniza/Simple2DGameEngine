@@ -6,7 +6,7 @@
 
 using namespace std;
 
-class Game
+class Game1
 {
 private:
 	SDL_Window* window = nullptr;
