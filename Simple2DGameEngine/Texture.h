@@ -11,6 +11,7 @@ public:
 	~Texture();
 
 	bool LoadFromFile(std::string path);
+	SDL_Texture* GetTexture();
 
 private:
 	SDL_Texture* sTexture;

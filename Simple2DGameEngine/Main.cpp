@@ -2,6 +2,7 @@
 #include "easydl.h"
 #include "Game.h"
 #include "Tank.h"
+#include "Texture.h"
 
 using namespace std;
 
@@ -32,10 +33,11 @@ int main(int argc, char *argv[])
 
 	
 	//SDL_Texture* texture = Game1.loadImage("C:\\Users\\JuanFelipe\\Documents\\Visual Studio 2015\\Projects\\Simple2DGameEngine\\Simple2DGameEngine\\Jugador.bmp");
-	SDL_Texture* texture = g.GameRenderer->loadImage("Jugador.bmp");
+	Texture texture;
+	texture.LoadFromFile("Jugador.bmp");
 
-	g.GameRenderer->AddTextureToRender(texture, NULL, &DestR);
-	g.GameRenderer->AddTextureToRender(texture, NULL, &DestR2);
+	g.GameRenderer->AddTextureToRender(texture.GetTexture(), NULL, &DestR);
+	g.GameRenderer->AddTextureToRender(texture.GetTexture(), NULL, &DestR2);
 
 	g.Update();
 	while (true) {
