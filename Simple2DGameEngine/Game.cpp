@@ -23,7 +23,7 @@ void Game::Update()
 
 Game::Game()
 {
-	GameRenderer = Renderer::GetThisRenderer();
+	GameRenderer = Renderer::GetRendererInstance();
 }
 
 

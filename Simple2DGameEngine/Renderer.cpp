@@ -68,27 +68,12 @@ void Renderer::AddTextureToRender(SDL_Texture* texture, SDL_Rect* source, SDL_Re
 	);
 }
 
-SDL_Texture* Renderer::loadImage(std::string path) {
-	auto img = IMG_Load(path.c_str());
-	if (img == NULL) {
-		//cout << "No se pudo cargar " << path.c_str() << ". " << SDL_GetError() << '\n';
-		Log::WriteConsoleLog("asd");
-		return NULL;
-	}
-
-	auto texture = SDL_CreateTextureFromSurface(sRenderer, img);
-
-	SDL_FreeSurface(img);
-
-	return texture;
-}
-
 SDL_Renderer* Renderer::GetRenderer()
 {
 	return rRenderer->sRenderer;
 }
 
-Renderer* Renderer::GetThisRenderer()
+Renderer* Renderer::GetRendererInstance()
 {
 	if (rRenderer == nullptr)
 		rRenderer = new Renderer();

@@ -19,13 +19,16 @@ private:
 	int Fps;
 
 public:
+	/** Initialize the renderer given the weight an heigth of the screen, and configure the renderer update with the fps number */
 	bool Initialize(int fps, int weight, int heigth);
+	/** Render the current render buffer on the screen, then clear the renderer */
 	void Render();
+	/** Add a texture to render buffer within the source and destination rectangles */
 	void AddTextureToRender(SDL_Texture* texture, SDL_Rect* source = NULL, SDL_Rect* destination = NULL);
-	SDL_Texture* Renderer::loadImage(std::string path);
-
+	/** Return the sRenderer to be used on Texture creation */
 	static SDL_Renderer* GetRenderer();
-	static Renderer* GetThisRenderer();
+	/** We need the same renderer in whole excecution, so we implement the singleton pattern */
+	static Renderer* GetRendererInstance();
 
 private:
 	Renderer();

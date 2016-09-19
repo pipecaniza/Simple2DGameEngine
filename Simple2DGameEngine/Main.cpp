@@ -35,10 +35,11 @@ int main(int argc, char *argv[])
 	//SDL_Texture* texture = Game1.loadImage("C:\\Users\\JuanFelipe\\Documents\\Visual Studio 2015\\Projects\\Simple2DGameEngine\\Simple2DGameEngine\\Jugador.bmp");
 	Texture texture;
 	texture.LoadFromFile("Jugador.bmp");
-
+	texture.SetColorModulation(150, 30, 240);
 	g.GameRenderer->AddTextureToRender(texture.GetTexture(), NULL, &DestR);
+	texture.SetAlpha(100);
 	g.GameRenderer->AddTextureToRender(texture.GetTexture(), NULL, &DestR2);
-
+	
 	g.Update();
 	while (true) {
 		
